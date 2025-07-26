@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hostel Master Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 80%;
+      max-width: 800px;
+      margin: 30px auto;
+      background-color: #e6f2ff;
+      padding: 25px 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 20px; /* Increased space for error messages */
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group input[type="time"],
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box; /* Ensures padding doesn't affect width */
+    }
+    
+    .form-group input.invalid {
+        border-color: #e74c3c;
+    }
+
+    .error-message {
+        color: #e74c3c;
+        font-size: 0.85rem;
+        margin-top: 4px;
+        display: none; /* Hidden by default */
+    }
+
+    .checkbox-group,
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .checkbox-group label,
+    .radio-group label {
+      font-weight: normal;
+    }
+
+    .buttons {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .buttons button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 0 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .buttons .clear {
+      background-color: #ccc;
+    }
+
+    .buttons .submit {
+      background-color: #4CAF50;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Hostel Master Form</h2>
+  <form id="hostelForm" novalidate>
+    <div class="form-group">
+      <label>Institution Name *</label>
+      <input type="text" name="institution" required />
+      <div class="error-message">Institution name is required.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Hostel Name *</label>
+      <input type="text" name="hostelName" required />
+      <div class="error-message">Hostel name is required.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Warden Name *</label>
+      <input type="text" name="wardenName" required />
+      <div class="error-message">Warden name is required.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Hostel Contact Number *</label>
+      <input type="text" name="contactNumber" required />
+      <div class="error-message" id="contactNumberError">Pls enter a valid 10 digit mobile number</div>
+    </div>
+
+    <div class="form-group">
+      <label>Full Address *</label>
+      <textarea name="address" rows="3" required></textarea>
+      <div class="error-message">Address is required.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Total Students Capacity *</label>
+      <input type="number" name="studentCapacity" min="1" required />
+      <div class="error-message">Capacity is required.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Number of Floors *</label>
+      <input type="number" name="floors" min="1" required />
+      <div class="error-message">Number of floors is required.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Room Type *</label>
+      <select name="roomType" required>
+        <option value="">Select Room Type</option>
+        <option value="Single">Single</option>
+        <option value="Double">Double</option>
+        <option value="Triple">Triple</option>
+        <option value="Dormitory">Dormitory</option>
+      </select>
+      <div class="error-message">Please select a room type.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Fee Type *</label>
+      <select name="feeType" required>
+        <option value="">Select Fee Type</option>
+        <option value="Monthly">Monthly</option>
+        <option value="Quarterly">Quarterly</option>
+        <option value="Annually">Annually</option>
+      </select>
+      <div class="error-message">Please select a fee type.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Fee Amount (INR) *</label>
+      <input type="number" name="feeAmount" min="0" required />
+      <div class="error-message">Fee amount is required.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Security Deposit (INR)</label>
+      <input type="number" name="securityDeposit" min="0" />
+    </div>
+
+    <div class="form-group">
+      <label>Fee Includes</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="includes" value="Electricity Bill" /> Electricity Bill</label>
+        <label><input type="checkbox" name="includes" value="Water Bill" /> Water Bill</label>
+        <label><input type="checkbox" name="includes" value="Maintenance" /> Maintenance</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Curfew Time</label>
+      <input type="time" name="curfew" />
+    </div>
+
+    <div class="form-group">
+      <label>Guest Policy</label>
+      <div class="radio-group">
+        <label><input type="radio" name="guestPolicy" value="Allowed" /> Allowed</label>
+        <label><input type="radio" name="guestPolicy" value="Not Allowed" checked /> Not Allowed</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Select Hostel Facilities</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="facilities" value="Wi-Fi" /> Wi-Fi</label>
+        <label><input type="checkbox" name="facilities" value="Water" /> Water</label>
+        <label><input type="checkbox" name="facilities" value="Food" /> Food</label>
+        <label><input type="checkbox" name="facilities" value="Laundry" /> Laundry</label>
+        <label><input type="checkbox" name="facilities" value="Security" /> Security</label>
+        <label><input type="checkbox" name="facilities" value="Parking" /> Parking</label>
+        <label><input type="checkbox" name="facilities" value="Gym" /> Gym</label>
+      </div>
+    </div>
+    
+    <div class="form-group">
+        <label>Status *</label>
+        <select name="status" required>
+            <option>Active</option>
+            <option>Inactive</option>
+        </select>
+        <div class="error-message">Please select a status.</div>
+    </div>
+
+    <div class="buttons">
+      <button type="submit" class="submit">Submit</button>
+      <button type="reset" class="clear">Clear</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById("hostelForm");
+
+  // --- Helper Functions for Validation ---
+  function showError(input, message) {
+    const errorDisplay = input.nextElementSibling;
+    input.classList.add('invalid');
+    if (errorDisplay && errorDisplay.classList.contains('error-message')) {
+        errorDisplay.textContent = message;
+        errorDisplay.style.display = 'block';
+    }
+  }
+
+  function clearError(input) {
+    const errorDisplay = input.nextElementSibling;
+    input.classList.remove('invalid');
+    if (errorDisplay && errorDisplay.classList.contains('error-message')) {
+        errorDisplay.style.display = 'none';
+    }
+  }
+
+  // --- Input Filtering for Numeric Fields ---
+  const numericFields = ['studentCapacity', 'floors', 'feeAmount', 'securityDeposit', 'contactNumber'];
+  numericFields.forEach(fieldName => {
+      const input = form[fieldName];
+      input.addEventListener('input', () => {
+          input.value = input.value.replace(/\D/g, ''); // Remove non-digit characters
+      });
+  });
+
+  // --- Specific Validation for Contact Number ---
+  const contactNumberInput = form.contactNumber;
+  
+  function validateContactNumber() {
+    const mobileRegex = /^\d{10}$/;
+    if (contactNumberInput.value.trim() === '') {
+        showError(contactNumberInput, 'Hostel Contact Number is required.');
+        return false;
+    } else if (!mobileRegex.test(contactNumberInput.value)) {
+        showError(contactNumberInput, 'Pls enter a valid 10 digit mobile number');
+        return false;
+    } else {
+        clearError(contactNumberInput);
+        return true;
+    }
+  }
+  contactNumberInput.addEventListener('blur', validateContactNumber);
+
+
+  // --- General Validation for Other Required Fields ---
+  const requiredFields = form.querySelectorAll('[required]');
+  requiredFields.forEach(input => {
+      if (input.name !== 'contactNumber') { // Already handled above
+        input.addEventListener('blur', () => {
+            if (input.value.trim() === '') {
+                showError(input, `${input.previousElementSibling.textContent.replace('*','').trim()} is required.`);
+            } else {
+                clearError(input);
+            }
+        });
+      }
+  });
+
+  // --- Form Submission Handler ---
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let isFormValid = true;
+
+    // Validate all required fields on submit
+    requiredFields.forEach(input => {
+        if (input.name === 'contactNumber') {
+            if (!validateContactNumber()) isFormValid = false;
+        } else {
+            if (input.value.trim() === '') {
+                showError(input, `${input.previousElementSibling.textContent.replace('*','').trim()} is required.`);
+                isFormValid = false;
+            } else {
+                clearError(input);
+            }
+        }
+    });
+
+    if (isFormValid) {
+      console.log("Form Submitted Successfully");
+      alert("Form submitted successfully!");
+      this.reset();
+    } else {
+        console.log("Form has validation errors.");
+        alert("Please fix the errors before submitting.");
+    }
+  });
+  
+  // --- Clear Button Handler ---
+  form.addEventListener('reset', () => {
+      requiredFields.forEach(input => {
+          clearError(input);
+      });
+      // Explicitly set the status back to 'Active' after reset
+      form.status.value = 'Active';
+  });
+</script>
+
+</body>
+</html>
